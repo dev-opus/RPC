@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>RPC</title>
+	</head>
+	<body>
+		<script>
+			// player selection implementation
+
+			let playerSelection = prompt('Choose your mode');
+
+			// functionality of the computer play
+
+			function computerPlay() {
+				let decider = Math.random() * 10;
+				let playForm;
+
+				playForm =
+					decider >= 1 && decider <= 3
+						? 'rock'
+						: decider > 3 && decider <= 6
+						? 'paper'
+						: 'scissors';
+				return playForm;
+			}
+
+			// functionality of the play round
+
+			function playRound(playerSelection, computerPlay) {
+				if (playerSelection.toLowerCase() === 'rock') {
+					if (computerPlay() === 'rock') {
+						return "It's a tie!";
+					} else if (computerPlay() === 'scissors') {
+						return 'You win! Rock beats Scissors';
+					} else {
+						return 'You lose! Paper beats Rock';
+					}
+				} else if (playerSelection.toLowerCase() === 'scissors') {
+					if (computerPlay() === 'rock') {
+						return 'You lose! Rock beats Scissors';
+					} else if (computerPlay() === 'scissors') {
+						return "It's a tie!";
+					} else {
+						return 'You win! Scissors beats Paper';
+					}
+				} else if (playerSelection.toLowerCase() === 'paper') {
+					if (computerPlay() === 'rock') {
+						return 'You win! Paper beats Rock';
+					} else if (computerPlay() === 'scissors') {
+						return 'You lose! Scissors beats Paper';
+					} else {
+						return "It's a tie!";
+					}
+				}
+				return 'Invalid option!';
+			}
+
+			console.log(playRound(playerSelection, computerPlay));
+		</script>
+	</body>
+</html>
