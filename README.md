@@ -1,11 +1,10 @@
-This is a web browser console based Rock-Paper-Scissors game.
+This is a (PC) browser-based Rock-Paper-Scissors game with a simple GUI.
 
 It is part of the TOP web dev 101 projects.
 
 To play, visit https://dev-opus.github.io/RPS
 
-Press f12 to open the developer tools to see the gameplay.
-
 Enjoy!
 
-NOTE: You can only play this game on a laptop or desktop computer. 
+NOTE: This game is only FULLY supported on modern PC based 
+web browsers.
