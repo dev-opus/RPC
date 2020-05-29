@@ -1,96 +1,119 @@
-let computerScore = 0;
-let yourScore = 0;
-let winner;
-// functionality of the computer play
+/* 
+    functionality of the game lives here. first,
+    i'll grab all i need from the html
 
-function computerPlay() {
-    let decider = Math.random() * 10;
-    let playForm;
 
-    playForm =
-        decider >= 1 && decider <= 3
-            ? 'rock'
-            : decider > 3 && decider <= 6
-            ? 'paper'
-            : 'scissors';
-    return playForm;
+    3rd i'll add event listeners with
+    their functions and 
+
+
+    2nd, i'll create the corresponding functions
+*/
+
+let userScore = document.getElementById('user-score');
+let compScore = document.getElementById('comp-score');
+let resultText = document.querySelector('.result > p');
+
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+
+
+
+
+function setCompMode() {
+	const modes = ['rock', 'paper', 'scissors'];
+	let randomizer = Math.floor(Math.random() * 3);
+
+	let mode = modes[randomizer];
+	return mode;
 }
 
-// functionality of the play round
+function setPlayerMode(event) {
+	this.event.target === rock
+		? (mode = 'rock')
+		: this.event.target === paper
+			? (mode = 'paper')
+			: (mode = 'scissors');
 
-function playRound(playerSelection, computerPlay) {
-    if (playerSelection.toLowerCase() === 'rock') {
-        if (computerPlay() === 'rock') {
-            computerScore = computerScore;
-            yourScore = yourScore;
-            return "It's a tie!";
-        } else if (computerPlay() === 'scissors') {
-            yourScore++;
-            return 'You win! Rock beats Scissors';
-        } else {
-            computerScore++;
-            return 'You lose! Paper beats Rock';
-        }
-    } else if (playerSelection.toLowerCase() === 'scissors') {
-        if (computerPlay() === 'rock') {
-            computerScore++;
-            return 'You lose! Rock beats Scissors';
-        } else if (computerPlay() === 'scissors') {
-            yourScore = yourScore;
-            computerScore = computerScore;
-            return "It's a tie!";
-        } else {
-            yourScore++;
-            return 'You win! Scissors beats Paper';
-        }
-    } else if (playerSelection.toLowerCase() === 'paper') {
-        if (computerPlay() === 'rock') {
-            yourScore++;
-            return 'You win! Paper beats Rock';
-        } else if (computerPlay() === 'scissors') {
-            computerScore++;
-            return 'You lose! Scissors beats Paper';
-        } else {
-            computerScore = computerScore;
-            yourScore = yourScore;
-            return "It's a tie!";
-        }
-    }
+	return mode;
 }
 
-function gane() {
-    let count = 5;
-    while (count > 0) {
-        let playerSelection = prompt(
-            'Choose your mode: Rock, Scissors or Paper',
-        );
+function play(player, computer) {
+	let playerMode = player();
+	let compMode = computer();
 
-        if (
-            playerSelection.toLowerCase() !== 'rock' &&
-            playerSelection.toLowerCase() !== 'scissors' &&
-            playerSelection.toLowerCase() !== 'paper'
-        ) {
-            alert(
-                'Invalid selection! Please choose between Rock, Paper or Scissors',
-            );
-        } else {
-            computerPlay();
-            console.log(
-                '%s',
-                `${playRound(playerSelection, computerPlay)}
-            AI: ${computerScore}
-            You: ${yourScore}`,
-            );
-            count--;
-        }
-    }
+	if (parseInt(userScore.innerText) === 5) {
+		resultText.innerText = 'this wave is over and you have won it! click on any icon to restart';
+
+		setTimeout(() => {
+			userScore.innerText = 0;
+			compScore.innerText = 0;
+		}, 3000)
+	}
+
+	else if (parseInt(compScore.innerText) === 5) {
+		resultText.innerText = 'this wave is over and you have lost it! click on any icon to restart';
+
+		setTimeout(() => {
+			userScore.innerText = 0;
+			compScore.innerText = 0;
+		}, 3000)
+	}
+
+
+	else {
+
+		if (playerMode === compMode) {
+			resultText.innerText = "It's a draw";
+		}
+		else if (playerMode == 'rock') {
+
+			if (compMode == 'paper') {
+				compScore.innerText = parseInt(compScore.innerText) + 1;
+				resultText.innerText = 'ouch! you lose this round';
+			}
+
+			else {
+				userScore.innerText = parseInt(userScore.innerText) + 1;
+				resultText.innerText = 'yaayy! you win this round';
+			}
+		}
+		else if (playerMode == 'paper') {
+
+			if (compMode == 'scissors') {
+				compScore.innerText = parseInt(compScore.innerText) + 1;
+				resultText.innerText = 'ouch! you lose this round';
+			}
+
+			else {
+				userScore.innerText = parseInt(userScore.innerText) + 1;
+				resultText.innerText = 'yaayy! you win this round';
+			}
+		}
+
+		else {
+			if (compMode == 'rock') {
+				compScore.innerText = parseInt(compScore.innerText) + 1;
+				resultText.innerText = 'ouch! you lose this round';
+			}
+
+			else {
+				userScore.innerText = parseInt(userScore.innerText) + 1;
+				resultText.innerText = 'yaayy! you win this round';
+			}
+		}
+	}
+
+	console.log(playerMode, compMode);
 }
 
-gane();
-if (yourScore > computerScore) {
-    winner = 'Hurray! You won this wave!';
-} else {
-    winner = 'Ouch! You lost this wave';
-}
-
-console.log(`${winner}\nAI: ${computerScore}\nYou: ${yourScore}`);
+rock.addEventListener('click', () => {
+	play(setPlayerMode, setCompMode);
+});
+paper.addEventListener('click', () => {
+	play(setPlayerMode, setCompMode);
+});
+scissors.addEventListener('click', () => {
+	play(setPlayerMode, setCompMode);
+});
