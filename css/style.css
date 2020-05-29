@@ -23,10 +23,6 @@ body {
 	height: 100%;
 }
 
-/* body {
-    display: flex;
-    flex-direction: column;
-} */
 .container {
 	max-width: 1080px;
 	margin: 0 auto;
@@ -58,18 +54,18 @@ body {
 	font-style: italic;
 	text-transform: uppercase;
 	letter-spacing: .35em;
+	word-spacing: .5em;
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 .description {
-	color: rosybrown;
-	font-weight: 450;
+	color: rgba(9, 17, 1, 0.986);
+	font-weight: normal;
 	font-size: 1.2em;
 	text-transform: capitalize;
 	margin-top: .75em;
 	margin-bottom: 0;
-
 }
 
 .score-board {
@@ -103,10 +99,9 @@ body {
 }
 
 .result {
-	font-weight: lighter;
-	font-size: 2em;
-	color: rosybrown;
-
+	font-weight: normal;
+	color: rgba(9, 17, 1, 0.986);
+	font-size: 1.25em;
 	padding: .35 1.5em;
 	text-transform: capitalize;
 }
