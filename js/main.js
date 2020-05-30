@@ -7,7 +7,9 @@
     their functions and 
 
 
-    2nd, i'll create the corresponding functions
+	2nd, i'll create the corresponding functions
+	
+	written by Orlunda Victor Opus
 */
 
 let userScore = document.getElementById('user-score');
