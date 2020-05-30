@@ -18,9 +18,6 @@ const rock = document.querySelector('.rock');
 const paper = document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
 
-
-
-
 function setCompMode() {
 	const modes = ['rock', 'paper', 'scissors'];
 	let randomizer = Math.floor(Math.random() * 3);
@@ -33,8 +30,8 @@ function setPlayerMode(event) {
 	this.event.target === rock
 		? (mode = 'rock')
 		: this.event.target === paper
-			? (mode = 'paper')
-			: (mode = 'scissors');
+		? (mode = 'paper')
+		: (mode = 'scissors');
 
 	return mode;
 }
@@ -44,63 +41,53 @@ function play(player, computer) {
 	let compMode = computer();
 
 	if (parseInt(userScore.innerText) === 5) {
-		resultText.innerText = 'this wave is over and you have won it! click on any icon to restart';
+		resultText.innerText =
+			'this wave is over and you have won it! click on any icon to restart';
 
 		setTimeout(() => {
 			userScore.innerText = 0;
 			compScore.innerText = 0;
-		}, 3000)
-	}
-
-	else if (parseInt(compScore.innerText) === 5) {
-		resultText.innerText = 'this wave is over and you have lost it! click on any icon to restart';
+		}, 3000);
+	} else if (parseInt(compScore.innerText) === 5) {
+		resultText.innerText =
+			'this wave is over and you have lost it! click on any icon to restart';
 
 		setTimeout(() => {
 			userScore.innerText = 0;
 			compScore.innerText = 0;
-		}, 3000)
-	}
-
-
-	else {
-
+		}, 3000);
+	} else {
 		if (playerMode === compMode) {
 			resultText.innerText = "It's a draw";
-		}
-		else if (playerMode == 'rock') {
-
+		} else if (playerMode == 'rock') {
 			if (compMode == 'paper') {
 				compScore.innerText = parseInt(compScore.innerText) + 1;
-				resultText.innerText = 'ouch! you lose this round';
-			}
-
-			else {
+				resultText.innerHTML =
+					'ouch! you lost this round. paper <sup style="color: red;"> (com)</sup> beats rock <sup style="color: red;"> (you)</sup>';
+			} else {
 				userScore.innerText = parseInt(userScore.innerText) + 1;
-				resultText.innerText = 'yaayy! you win this round';
+				resultText.innerHTML =
+					'yaayy! you won this round. rock <sup style="color: red;"> (you)</sup> beats scissors <sup style="color: red;"> (com)</sup>';
 			}
-		}
-		else if (playerMode == 'paper') {
-
+		} else if (playerMode == 'paper') {
 			if (compMode == 'scissors') {
 				compScore.innerText = parseInt(compScore.innerText) + 1;
-				resultText.innerText = 'ouch! you lose this round';
-			}
-
-			else {
+				resultText.innerHTML =
+					'ouch! you lost this round. scissors <sup style="color: red;"> (com)</sup> beats paper <sup style="color: red;"> (you)</sup>';
+			} else {
 				userScore.innerText = parseInt(userScore.innerText) + 1;
-				resultText.innerText = 'yaayy! you win this round';
+				resultText.innerHTML =
+					'yaayy! you won this round. paper <sup style="color: red;"> (you)</sup> beats rock <sup style="color: red;"> (com)</sup>';
 			}
-		}
-
-		else {
+		} else {
 			if (compMode == 'rock') {
 				compScore.innerText = parseInt(compScore.innerText) + 1;
-				resultText.innerText = 'ouch! you lose this round';
-			}
-
-			else {
+				resultText.innerHTML =
+					'ouch! you lost this round. rock <sup style="color: red;"> (com)</sup> beats scissors <sup style="color: red;"> (you)</sup>';
+			} else {
 				userScore.innerText = parseInt(userScore.innerText) + 1;
-				resultText.innerText = 'yaayy! you win this round';
+				resultText.innerHTML =
+					'yaayy! you won this round.  scissors <sup style="color: red;"> (you)</sup> beats paper <sup style="color: red;"> (com)</sup>';
 			}
 		}
 	}
